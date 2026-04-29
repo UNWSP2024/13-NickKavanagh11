@@ -1,0 +1,22 @@
+import sqlite3
+
+conn = sqlite3.connect("phonebook.db")
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS contacts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    email TEXT
+)
+""")
+
+# Sample data
+cursor.execute("INSERT INTO contacts (name, phone, email) VALUES ('John Doe', '555-1234', 'john@email.com')")
+cursor.execute("INSERT INTO contacts (name, phone, email) VALUES ('Jane Smith', '555-5678', 'jane@email.com')")
+
+conn.commit()
+conn.close()
+
+print("Phone book database created successfully.")

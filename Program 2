@@ -1,0 +1,15 @@
+import sqlite3
+
+conn = sqlite3.connect("cities.db")
+cursor = conn.cursor()
+
+cursor.execute("SELECT * FROM cities")
+rows = cursor.fetchall()
+
+print("\nCITIES DATABASE")
+print("-" * 40)
+
+for row in rows:
+    print(f"ID: {row[0]} | City: {row[1]} | State: {row[2]} | Population: {row[3]}")
+
+conn.close()

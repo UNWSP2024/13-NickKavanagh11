@@ -1,0 +1,24 @@
+import sqlite3
+
+conn = sqlite3.connect("cities.db")
+cursor = conn.cursor()
+
+# Create table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS cities (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    state TEXT NOT NULL,
+    population INTEGER
+)
+""")
+
+# Insert sample data
+cursor.execute("INSERT INTO cities (name, state, population) VALUES ('Minneapolis', 'MN', 425000)")
+cursor.execute("INSERT INTO cities (name, state, population) VALUES ('St. Paul', 'MN', 300000)")
+cursor.execute("INSERT INTO cities (name, state, population) VALUES ('Chicago', 'IL', 2700000)")
+
+conn.commit()
+conn.close()
+
+print("Cities database created successfully.")
